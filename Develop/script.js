@@ -1,3 +1,37 @@
+$(document).ready(function() {
+  var timeBlockContainer = $("#time-block-container");
+  var currentHour = dayjs().hour();
+  for (var hour = 9; hour <= 17; hour++) {
+      var formattedHour = dayjs({ hour: hour }).format("hA");
+      var currentHour = dayjs().hour();
+      var timeBlock = $("<div>")
+          .attr("id", "hour-" + hour)
+          .addClass("row time-block");
+
+      if (hour < currentHour) {
+          timeBlock.addClass("past");
+      } else if (hour === currentHour) {
+          timeBlock.addClass("present");
+      } else {
+          timeBlock.addClass("future");
+      }
+      timeBlock.html(`
+      <div class="col-2 col-md-4 col-lg-12 hour text-center py-3">${formattedHour}</div>
+      <textarea class="col-8 col-md-10 col-lg-12 description" rows="4"></textarea>
+      <button class="btn saveBtn col-2 col-md-1 col-lg-2" aria-label="save">
+          <i class="fas fa-save" aria-hidden="true"></i>
+      </button>
+  `);
+
+  timeBlockContainer.append(timeBlock);
+    }
+});
+
+
+
+
+
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
