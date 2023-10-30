@@ -2,6 +2,13 @@ $(document).ready(function() {
   var timeBlockContainer = $("#time-block-container");
   var currentHour = dayjs().hour();
   var savedText = JSON.parse(localStorage.getItem("savedText"));
+  var savedText = localStorage.getItem("savedText");
+if (savedText) {
+  savedText = JSON.parse(savedText);
+} else {
+  savedText = {};
+} 
+
   var currentDate = dayjs().format("MMMM D, YYYY");
     $("#currentDay").text(currentDate);
   console.log("savedText", savedText)
@@ -11,7 +18,7 @@ $(document).ready(function() {
     var c = "hour-" + hour;
     var timeBlock = $("<div>").attr("id", c).addClass("row time-block");
   
-    let txt = savedText[c];
+    let txt = savedText[c] ||"" ;
     console.log('txt', txt)
 
       if (hour < currentHour) {
