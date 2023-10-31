@@ -2,13 +2,17 @@ $(document).ready(function() {
   var timeBlockContainer = $("#time-block-container");
   var currentHour = dayjs().hour();
   var savedText = JSON.parse(localStorage.getItem("savedText"));
-  console.log(savedText)
+  var currentDate = dayjs().format("MMMM D, YYYY");
+    $("#currentDay").text(currentDate);
+  console.log("savedText", savedText)
   for (var hour = 9; hour <= 17; hour++) {
-      var formattedHour = dayjs().hour(hour).format("hA");
-      var currentHour = dayjs().hour();
-      var timeBlock = $("<div>")
-          .attr("id", "hour-" + hour)
-          .addClass("row time-block");
+    var formattedHour = dayjs().hour(hour).format("hA");
+    var currentHour = dayjs().hour();
+    var c = "hour-" + hour;
+    var timeBlock = $("<div>").attr("id", c).addClass("row time-block");
+  
+    let txt = savedText[c];
+    console.log('txt', txt)
 
       if (hour < currentHour) {
           timeBlock.addClass("past");
@@ -19,7 +23,7 @@ $(document).ready(function() {
       }
       timeBlock.html(`
       <div class="col-2 col-md-4 col-lg-12 hour text-center py-3">${formattedHour}</div>
-      <textarea class="col-8 col-md-10 col-lg-12 description" rows="4"></textarea>
+      <textarea class="col-8 col-md-10 col-lg-12 description" rows="4">${txt}</textarea>
       <button class="btn saveBtn col-2 col-md-1 col-lg-2" aria-label="save">
           <i class="fas fa-save" aria-hidden="true"></i>
       </button>
@@ -32,7 +36,7 @@ $(document).ready(function() {
         savedText[hourId] = enteredText;
         localStorage.setItem("savedText", JSON.stringify(savedText))
         alert("Event Added!");
-        saveToLocalStorage("savedText", savedText)
+        //saveToLocalStorage("savedText", savedText)
     });
 })("hour-" + hour);
   timeBlockContainer.append(timeBlock);
