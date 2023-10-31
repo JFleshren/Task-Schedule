@@ -1,14 +1,14 @@
 $(document).ready(function() {
   var timeBlockContainer = $("#time-block-container");
   var currentHour = dayjs().hour();
-  var savedText = JSON.parse(localStorage.getItem("savedText")) || {}
+  var savedText = JSON.parse(localStorage.getItem("savedText"));
+  console.log(savedText)
   for (var hour = 9; hour <= 17; hour++) {
-      var formattedHour = dayjs({ hour: hour }).format("hA");
+      var formattedHour = dayjs().hour(hour).format("hA");
       var currentHour = dayjs().hour();
       var timeBlock = $("<div>")
           .attr("id", "hour-" + hour)
           .addClass("row time-block");
-          
 
       if (hour < currentHour) {
           timeBlock.addClass("past");
@@ -25,13 +25,14 @@ $(document).ready(function() {
       </button>
   `);
   (function(hourId) {
-    var saveButton = timeBlock.find(".saveBtn");
-    saveButton.click(function() {
+    var saveBtn = timeBlock.find(".saveBtn");
+    saveBtn.click(function() {
         var textArea = $(this).siblings(".description");
         var enteredText = textArea.val().trim();
         savedText[hourId] = enteredText;
-        localStorage.setItem("savedText", JSON.stringify(savedText));
+        localStorage.setItem("savedText", JSON.stringify(savedText))
         alert("Event Added!");
+        saveToLocalStorage("savedText", savedText)
     });
 })("hour-" + hour);
   timeBlockContainer.append(timeBlock);
