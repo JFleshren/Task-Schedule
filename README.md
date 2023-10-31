@@ -26,6 +26,6 @@ https://jfleshren.github.io/Task-Schedule/
 
 ##Screenshots
 
-!(https://github.com/JFleshren/Task-Schedule/blob/main/Assets/Screenshot%20(28).png) 
-!(https://github.com/JFleshren/Task-Schedule/blob/main/Assets/Screenshot%20(29).png) 
-!(https://github.com/JFleshren/Task-Schedule/blob/main/Assets/Screenshot%20(30).png)
+![Schedule](https://github.com/JFleshren/Task-Schedule/blob/main/Assets/Screenshot%20(28).png) 
+![Schedule](https://github.com/JFleshren/Task-Schedule/blob/main/Assets/Screenshot%20(29).png) 
+![Schedule](https://github.com/JFleshren/Task-Schedule/blob/main/Assets/Screenshot%20(30).png)
